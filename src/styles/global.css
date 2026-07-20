@@ -1,111 +1,71 @@
-* {
-  box-sizing: border-box;
-}
+@import 'tailwindcss';
 
-html {
-  scroll-behavior: smooth;
-}
+@theme {
+  /* The Two-Thread palette — see DESIGN.md */
+  --color-gold: oklch(0.74 0.13 78);
+  --color-maroon: oklch(0.36 0.13 22);
+  --color-maroon-dark: oklch(0.28 0.12 22);
+  --color-ink: oklch(0.22 0.02 40);
+  --color-ink-soft: oklch(0.42 0.02 40);
+  --color-counter: oklch(0.975 0.012 75);
+  --color-cream: oklch(0.98 0.01 75);
+  --color-shade: oklch(0.95 0.02 70);
+  --color-hairline: oklch(0.88 0.02 60);
 
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--ink);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-:root {
-  --gold: oklch(0.74 0.13 78);
-  --maroon: oklch(0.36 0.13 22);
-  --maroon-dark: oklch(0.28 0.12 22);
-  --ink: oklch(0.22 0.02 40);
-  --ink-soft: oklch(0.42 0.02 40);
-  --bg: oklch(0.975 0.012 75);
-  --cream: oklch(0.98 0.01 75);
-  --panel: oklch(0.95 0.02 70);
-  --hairline: oklch(0.88 0.02 60);
-  --bg-translucent: oklch(0.975 0.012 75 / 0.93);
-  --scrim-strong: oklch(0.22 0.02 40 / 0.9);
-  --scrim-mid: oklch(0.22 0.02 40 / 0.6);
-  --scrim-light: oklch(0.22 0.02 40 / 0.2);
-  --cream-text: oklch(0.98 0.01 75 / 0.87);
-  --cream-border: oklch(0.98 0.01 75 / 0.6);
-  --cream-hover-bg: oklch(0.98 0.01 75 / 0.1);
-  --cream-muted: oklch(0.98 0.01 75 / 0.8);
-  --cream-footer-muted: oklch(0.98 0.01 75 / 0.6);
-
-  --font-display: 'Cormorant Garamond', serif;
-  --font-body: 'Work Sans', sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Work Sans', system-ui, sans-serif;
   --font-arabic: 'Reem Kufi', sans-serif;
 }
 
-/* Arabic pages: Kufi display type, Tajawal body type, no letter tracking */
-html[dir='rtl'] {
-  --font-display: 'Reem Kufi', sans-serif;
-  --font-body: 'Tajawal', sans-serif;
-  --font-arabic: 'Cormorant Garamond', serif;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--color-counter);
+    color: var(--color-ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Arabic pages: Kufi display, Tajawal body, no letter tracking (The Two-Script Rule) */
+  html[dir='rtl'] {
+    --font-display: 'Reem Kufi', sans-serif;
+    --font-body: 'Tajawal', sans-serif;
+    --font-arabic: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  html[dir='rtl'] * {
+    letter-spacing: 0 !important;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
 }
 
-html[dir='rtl'] * {
-  letter-spacing: 0 !important;
+/* One container for every section (The consistent-counter rule) */
+@utility container-site {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 6vw, 72px);
 }
 
-.kicker {
-  font-family: var(--font-arabic);
-  color: var(--gold);
-  font-size: 14px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+@utility section-pad {
+  padding-block: clamp(64px, 9vw, 100px);
 }
 
-html[dir='rtl'] .kicker {
-  font-family: var(--font-body);
-  font-weight: 700;
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(30px, 4vw, 42px);
-  color: var(--maroon);
-  margin: 0;
-}
-
-.btn {
-  display: inline-block;
-  padding: 15px 28px;
-  border-radius: 100px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 15px;
-  transition: filter 0.15s ease, background 0.15s ease;
-}
-
-.btn-maroon {
-  background: var(--maroon);
-  color: var(--cream);
-}
-
-.btn-maroon:hover {
-  background: var(--maroon-dark);
-}
-
-.btn-gold {
-  background: var(--gold);
-  color: var(--ink);
-}
-
-.btn-gold:hover {
-  filter: brightness(1.08);
-}
-
-.btn-outline-cream {
-  background: transparent;
-  color: var(--cream);
-  border: 1.5px solid var(--cream-border);
-}
-
-.btn-outline-cream:hover {
-  background: var(--cream-hover-bg);
+/* Subtle Damascene girih lattice — gold on the section tone */
+@utility bg-mosaic {
+  background-image: url('/mosaic.svg');
+  background-size: 96px 96px;
 }

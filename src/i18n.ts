@@ -68,6 +68,7 @@ export const translations = {
     },
     counter: {
       alt: 'Baklava rolls and a pyramid of pistachio baklava on the shop counter',
+      caption: 'Fresh from the counter, every day',
     },
     order: {
       kicker: 'Order Online',
@@ -81,6 +82,7 @@ export const translations = {
       kicker: 'Reviews',
       title: 'What Newcastle is saying',
       source: 'Google review',
+      cta: 'Read all our reviews on Google',
     },
     visit: {
       kicker: 'Visit Us',
@@ -167,6 +169,7 @@ export const translations = {
     },
     counter: {
       alt: 'لفائف البقلاوة وهرم من البقلاوة بالفستق على واجهة المحل',
+      caption: 'طازج من الواجهة، كل يوم',
     },
     order: {
       kicker: 'اطلب أونلاين',
@@ -180,6 +183,7 @@ export const translations = {
       kicker: 'آراء الزبائن',
       title: 'ماذا تقول نيوكاسل عنا',
       source: 'تقييم غوغل',
+      cta: 'اقرأوا كل تقييماتنا على غوغل',
     },
     visit: {
       kicker: 'زورونا',

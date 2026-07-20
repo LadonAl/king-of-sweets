@@ -1,96 +1,40 @@
 ---
-import Ribbon from './Ribbon.astro';
-import { reviews } from '../data/site';
+import { reviews, site } from '../data/site';
 import { useT } from '../i18n';
 
 const lang = Astro.currentLocale ?? 'en';
 const t = useT(lang);
 ---
 
-<section id="reviews">
-  <Ribbon size="small" />
-  <div class="inner">
-    <div class="kicker">{t.reviews.kicker}</div>
-    <h2 class="section-title">{t.reviews.title}</h2>
-    <div class="cards">
+<section id="reviews" class="section-pad bg-shade bg-mosaic">
+  <div class="container-site text-center">
+    <div class="font-arabic text-sm tracking-[1.5px] text-gold uppercase rtl:font-body rtl:font-bold">
+      {t.reviews.kicker}
+    </div>
+    <h2 class="mt-2 mb-10 font-display text-[clamp(30px,4vw,42px)] font-bold text-balance text-maroon">
+      {t.reviews.title}
+    </h2>
+    <div class="mx-auto grid max-w-[1100px] grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
       {
         reviews.map((rev) => (
-          <div class="card" dir="ltr">
-            <div class="stars">★★★★★</div>
-            <p>"{rev.quote}"</p>
-            <div class="who">
-              {rev.name} <span>· {t.reviews.source}</span>
+          <div class="flex flex-col gap-3 rounded-[14px] border border-hairline bg-counter p-6.5 text-left" dir="ltr">
+            <div class="text-base tracking-[2px] text-gold" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <p class="m-0 flex-1 text-[15px] leading-relaxed text-ink-soft">"{rev.quote}"</p>
+            <div class="text-sm font-semibold text-ink">
+              {rev.name} <span class="font-normal text-ink-soft">· {t.reviews.source}</span>
             </div>
           </div>
         ))
       }
     </div>
+    <a
+      href={site.mapUrl}
+      target="_blank"
+      rel="noopener"
+      class="mt-8 inline-block text-[15px] font-semibold text-maroon underline decoration-gold decoration-2 underline-offset-4 transition-colors hover:text-maroon-dark"
+      >{t.reviews.cta}</a
+    >
   </div>
 </section>
-
-<style>
-  section {
-    position: relative;
-    padding: 90px 6vw;
-    padding-inline-end: calc(6vw + 130px);
-    background: var(--panel);
-  }
-
-  .inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  h2 {
-    margin: 8px 0 40px;
-  }
-
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-  }
-
-  .card {
-    background: var(--bg);
-    border-radius: 14px;
-    padding: 26px;
-    border: 1px solid var(--hairline);
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .stars {
-    color: var(--gold);
-    font-size: 16px;
-    letter-spacing: 2px;
-  }
-
-  .card p {
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    margin: 0;
-    flex: 1;
-  }
-
-  .who {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--ink);
-  }
-
-  .who span {
-    font-weight: 400;
-    color: var(--ink-soft);
-  }
-
-  @media (max-width: 1100px) {
-    section {
-      padding-inline-end: 6vw;
-    }
-  }
-</style>

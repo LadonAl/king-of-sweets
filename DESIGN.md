@@ -28,16 +28,34 @@ typography:
     fontSize: "24px"
     fontWeight: 700
     lineHeight: 1.2
+  accent:
+    fontFamily: "Reem Kufi, sans-serif"
+    fontSize: "26px"
+    fontWeight: 500
+  body-lg:
+    fontFamily: "Work Sans, system-ui, sans-serif"
+    fontSize: "19px"
+    fontWeight: 400
+    lineHeight: 1.55
   body:
     fontFamily: "Work Sans, system-ui, sans-serif"
     fontSize: "17px"
     fontWeight: 400
     lineHeight: 1.75
+  body-sm:
+    fontFamily: "Work Sans, system-ui, sans-serif"
+    fontSize: "15px"
+    fontWeight: 400
+    lineHeight: 1.625
   label:
     fontFamily: "Reem Kufi, sans-serif"
     fontSize: "14px"
     fontWeight: 500
     letterSpacing: "1.5px"
+  chip:
+    fontFamily: "Work Sans, system-ui, sans-serif"
+    fontSize: "12px"
+    fontWeight: 600
 rounded:
   sm: "8px"
   md: "14px"
@@ -107,6 +125,10 @@ A two-voice palette — gold speaks, maroon commits — over warm flat neutrals.
 
 Allergen chips (nuts, dairy, vegetarian, vegan, halal) each pair a pastel fill with a dark same-hue text at ≥4.5:1; exact values live in `src/data/site.ts` and the design sidecar.
 
+Tokens are implemented as Tailwind 4 `@theme` variables in `src/styles/global.css` (`bg-counter`, `text-maroon`, `border-hairline`, `font-display`, …). The shared layout utilities are `container-site` (1280px, clamp inline padding) and `section-pad` (clamp block padding) — every section uses both; ad-hoc containers are prohibited.
+
+**The Damascene Lattice.** Shaded sections (Menu, Reviews) carry `bg-mosaic` — a girih eight-pointed-star SVG tile in Brass Gold at 16% stroke opacity (`public/mosaic.svg`). It is texture, not decoration: if the pattern is the first thing you notice, the opacity is too high. It never sits behind photography or on Counter White.
+
 ### Named Rules
 **The Two-Thread Rule.** Brass Gold and Damask Maroon are the only two brand voices. New UI never introduces a third saturated color; if something needs emphasis, it gets gold, maroon, or scale — not a new hue.
 **The Ribbon Wears Both.** Wherever the ribbon appears, gold sits on maroon (crest border, welcome script). That pairing is the brand signature; don't dilute it with white-on-maroon or gold-on-white ribbons.
@@ -122,9 +144,13 @@ Allergen chips (nuts, dairy, vegetarian, vegan, halal) each pair a pastel fill w
 ### Hierarchy
 - **Display** (700, clamp(36px, 5.6vw, 60px), 1.05): the hero title only. Uppercase with 2px tracking in Latin; RTL uses line-height 1.3 and zero tracking.
 - **Headline** (700, clamp(30px, 4vw, 42px), 1.15): section titles, in Damask Maroon.
-- **Title** (700, 24–26px): card and story subheadings, in Warm Ink.
-- **Body** (400, 14.5–19px, 1.55–1.75): Soft Ink on light ground, Warm White at 0.87 alpha on dark. Cap measure at 65–75ch.
-- **Label** (Reem Kufi 500, 13–14px, 1.5px tracking, uppercase): section kickers in Brass Gold — the one deliberate cross-script accent on the English page.
+- **Title** (700, 24px / text-2xl): card and story subheadings, in Warm Ink; also the counter-band caption in Warm White.
+- **Accent** (Reem Kufi 500, 26px): the hero's Arabic/Latin secondary name line in Brass Gold.
+- **Body-lg** (400, 19px, 1.55): the hero tagline and the story pull-quote.
+- **Body** (400, 17px, 1.75): story paragraphs. Cap measure at 65–75ch.
+- **Body-sm** (400–600, 15px, 1.6): buttons, card copy, review quotes, inline links.
+- **Label** (Reem Kufi 500, 14px, 1.5px tracking, uppercase): section kickers in Brass Gold — the one deliberate cross-script accent on the English page.
+- **Chip** (600, 12px): allergen tags. The ribbon's pennant lettering (24px script, 10px tracked micro-label, 16px name) is part of the signature lockup and deliberately off-ramp.
 
 ### Named Rules
 **The Two-Script Rule.** Arabic is never an afterthought: `html[dir='rtl']` swaps the font variables (display → Reem Kufi, body → Tajawal) and zeroes ALL letter-spacing — tracking breaks connected script. Any new component must be designed against both directions before it ships.
@@ -166,7 +192,7 @@ Flat counter, hanging ribbons. Surfaces separate by tone (Counter White ↔ Coun
 - **Mobile:** links collapse ≤960px, CTA hides ≤560px (brand + switcher remain)
 
 ### The Ribbon (signature)
-Maroon pennant (`clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%)`), gradient 165deg Damask Maroon → Deep Maroon, ribbon shadow, hung from the section top at `inset-inline-end: 40px` so it mirrors in RTL. Contains the crest in a gold-bordered rotated diamond and the bilingual welcome. Large (180px) once after the hero; small (110px) at section corners. Hidden ≤1100px.
+Maroon pennant (`clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%)`), gradient 165deg Damask Maroon → Deep Maroon, ribbon shadow, hung from the section top at the inline-end edge so it mirrors in RTL. Contains the crest in a gold-bordered rotated diamond and the bilingual welcome. **It appears exactly once per page** — the 180px pennant hanging over the story section. Repeating it at section corners dilutes the signature and is prohibited. Hidden below 1100px.
 
 ## 6. Do's and Don'ts
 
@@ -184,4 +210,6 @@ Maroon pennant (`clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%)`), g
 - **Don't** letter-space Arabic text, ever; the RTL page zeroes tracking globally and that is doctrine, not accident.
 - **Don't** add shadows to cards, buttons, or inputs — flat counter, hanging ribbons.
 - **Don't** use colored side-stripe borders, gradient text, or glassmorphism panels (blur belongs to the sticky nav alone).
-- **Don't** replace photography with colored blocks or decorative "oriental" patterns — heritage is a person, not a pattern.
+- **Don't** replace photography with colored blocks or clip-art "oriental" decoration — heritage is a person, not a pattern. The Damascene Lattice is the sole sanctioned geometric texture, and only as a sub-perceptual background on shaded sections.
+- **Don't** repeat the ribbon — one pennant per page, over the story section.
+- **Don't** put text on a photograph without a scrim or gradient overlay that keeps it at ≥4.5:1 (hero scrim, counter-band gradient).

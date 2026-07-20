@@ -32,8 +32,12 @@
     "typographyMeta": {
       "display": { "displayName": "Display", "purpose": "Hero title only. Uppercase, 2px tracking in Latin. RTL: Reem Kufi, line-height 1.3, zero tracking." },
       "headline": { "displayName": "Headline", "purpose": "Section titles in Damask Maroon." },
+      "accent": { "displayName": "Accent", "purpose": "The hero's secondary name line (Arabic on EN page, Latin on AR page) in Brass Gold." },
+      "body-lg": { "displayName": "Body Large", "purpose": "Hero tagline and story pull-quote." },
       "body": { "displayName": "Body", "purpose": "Work Sans on LTR, Tajawal on RTL. Soft Ink minimum contrast on light ground." },
-      "label": { "displayName": "Kicker", "purpose": "Reem Kufi section kickers in Brass Gold — the deliberate cross-script accent." }
+      "body-sm": { "displayName": "Body Small", "purpose": "Buttons, card copy, review quotes, inline links." },
+      "label": { "displayName": "Kicker", "purpose": "Reem Kufi section kickers in Brass Gold — the deliberate cross-script accent." },
+      "chip": { "displayName": "Chip", "purpose": "Allergen tags. Ribbon pennant lettering (24/10/16px) is a signature off-ramp lockup." }
     },
     "shadows": [
       { "name": "ribbon", "value": "0 14px 32px oklch(0.22 0.02 40 / 0.6)", "purpose": "Hanging ribbon pennants only — nothing else casts." },
@@ -123,6 +127,7 @@
     ],
     "rules": [
       { "name": "The Two-Thread Rule", "body": "Brass Gold and Damask Maroon are the only two brand voices. New UI never introduces a third saturated color; if something needs emphasis, it gets gold, maroon, or scale — not a new hue.", "section": "colors" },
+      { "name": "The Damascene Lattice", "body": "Shaded sections carry bg-mosaic — a girih eight-pointed-star tile in Brass Gold at 16% stroke opacity. Texture, not decoration: if the pattern is the first thing you notice, the opacity is too high. Never behind photography or on Counter White.", "section": "colors" },
       { "name": "The Ribbon Wears Both", "body": "Wherever the ribbon appears, gold sits on maroon. That pairing is the brand signature; don't dilute it.", "section": "colors" },
       { "name": "The Two-Script Rule", "body": "Arabic is never an afterthought: html[dir='rtl'] swaps the font variables and zeroes ALL letter-spacing. Any new component must be designed against both directions before it ships.", "section": "typography" },
       { "name": "The Hanging Ribbon Rule", "body": "If it doesn't hang, it doesn't cast. Adding a shadow to a card, button, or input is prohibited; use tone, border, or scale instead.", "section": "elevation" }
@@ -141,7 +146,9 @@
       "Don't letter-space Arabic text, ever.",
       "Don't add shadows to cards, buttons, or inputs — flat counter, hanging ribbons.",
       "Don't use colored side-stripe borders, gradient text, or glassmorphism panels.",
-      "Don't replace photography with colored blocks or decorative 'oriental' patterns — heritage is a person, not a pattern."
+      "Don't replace photography with colored blocks or clip-art 'oriental' decoration — the Damascene Lattice is the sole sanctioned geometric texture.",
+      "Don't repeat the ribbon — one pennant per page, over the story section.",
+      "Don't put text on a photograph without a scrim or gradient overlay keeping it at ≥4.5:1."
     ]
   }
 }

@@ -1,5 +1,4 @@
 ---
-import Ribbon from './Ribbon.astro';
 import { site } from '../data/site';
 import { useT } from '../i18n';
 
@@ -7,85 +6,37 @@ const lang = Astro.currentLocale ?? 'en';
 const t = useT(lang);
 ---
 
-<section id="order">
-  <Ribbon size="small" />
-  <div class="kicker">{t.order.kicker}</div>
-  <h2 class="section-title">{t.order.title}</h2>
-  <p class="sub">{t.order.sub}</p>
-  <div class="buttons">
-    <a href={site.uberUrl} target="_blank" rel="noopener" class="order-btn maroon">{t.order.uber}</a>
-    <a href={site.deliverooUrl} target="_blank" rel="noopener" class="order-btn gold">{t.order.deliveroo}</a>
-    <a href={site.justEatUrl} target="_blank" rel="noopener" class="order-btn outline">{t.order.justEat}</a>
+<section id="order" class="section-pad">
+  <div class="container-site text-center">
+    <div class="font-arabic text-sm tracking-[1.5px] text-gold uppercase rtl:font-body rtl:font-bold">
+      {t.order.kicker}
+    </div>
+    <h2 class="mt-2 mb-3.5 font-display text-[clamp(30px,4vw,42px)] font-bold text-balance text-maroon">
+      {t.order.title}
+    </h2>
+    <p class="mx-auto mb-9 max-w-[520px] text-base text-ink-soft">{t.order.sub}</p>
+    <div class="flex flex-wrap justify-center gap-4.5">
+      <a
+        href={site.uberUrl}
+        target="_blank"
+        rel="noopener"
+        class="min-w-[180px] rounded-xl bg-maroon px-7 py-4 text-[15px] font-semibold text-cream no-underline transition-colors hover:bg-maroon-dark"
+        >{t.order.uber}</a
+      >
+      <a
+        href={site.deliverooUrl}
+        target="_blank"
+        rel="noopener"
+        class="min-w-[180px] rounded-xl bg-gold px-7 py-4 text-[15px] font-semibold text-ink no-underline transition-[filter] hover:brightness-108"
+        >{t.order.deliveroo}</a
+      >
+      <a
+        href={site.justEatUrl}
+        target="_blank"
+        rel="noopener"
+        class="min-w-[180px] rounded-xl border-[1.5px] border-maroon px-7 py-4 text-[15px] font-semibold text-maroon no-underline transition-colors hover:bg-shade"
+        >{t.order.justEat}</a
+      >
+    </div>
   </div>
 </section>
-
-<style>
-  section {
-    position: relative;
-    padding: 90px 6vw;
-    padding-inline-end: calc(6vw + 130px);
-    text-align: center;
-  }
-
-  h2 {
-    margin: 8px 0 14px;
-  }
-
-  .sub {
-    font-size: 16px;
-    color: var(--ink-soft);
-    max-width: 520px;
-    margin: 0 auto 36px;
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: center;
-    gap: 18px;
-    flex-wrap: wrap;
-  }
-
-  .order-btn {
-    padding: 16px 30px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    min-width: 180px;
-    transition: filter 0.15s ease, background 0.15s ease;
-  }
-
-  .order-btn.maroon {
-    background: var(--maroon);
-    color: var(--cream);
-  }
-
-  .order-btn.maroon:hover {
-    background: var(--maroon-dark);
-  }
-
-  .order-btn.gold {
-    background: var(--gold);
-    color: var(--ink);
-  }
-
-  .order-btn.gold:hover {
-    filter: brightness(1.08);
-  }
-
-  .order-btn.outline {
-    background: transparent;
-    color: var(--maroon);
-    border: 1.5px solid var(--maroon);
-  }
-
-  .order-btn.outline:hover {
-    background: var(--panel);
-  }
-
-  @media (max-width: 1100px) {
-    section {
-      padding-inline-end: 6vw;
-    }
-  }
-</style>
