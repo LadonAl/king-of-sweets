@@ -1,0 +1,172 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { useT } from '../i18n';
+
+interface Props {
+  size?: 'large' | 'small';
+}
+
+const { size = 'small' } = Astro.props;
+const lang = Astro.currentLocale ?? 'en';
+const t = useT(lang);
+---
+
+<div class:list={['ribbon', size]} aria-hidden="true">
+  <div class="ribbon-diamond">
+    <div class="ribbon-diamond-inner">
+      <Image src={logo} alt="" width="180" height="180" class="ribbon-crest" />
+    </div>
+  </div>
+  {
+    size === 'large' ? (
+      <div class="ribbon-text">
+        <div class="ribbon-big">{t.ribbon.big}</div>
+        <div class="ribbon-mid">{t.ribbon.mid}</div>
+        <div class="ribbon-small">{t.ribbon.small}</div>
+        <div class="ribbon-rule" />
+        <div class="ribbon-other">{t.ribbon.other}</div>
+      </div>
+    ) : (
+      <div class="ribbon-text">
+        <div class="ribbon-other-sm">{t.ribbon.other}</div>
+        <div class="ribbon-small-sm">{t.ribbon.small}</div>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .ribbon {
+    position: absolute;
+    top: 0;
+    inset-inline-end: 40px;
+    z-index: 2;
+    clip-path: polygon(0 0, 100% 0, 100% 82%, 50% 100%, 0 82%);
+    background: linear-gradient(165deg, var(--maroon), var(--maroon-dark));
+    box-shadow: 0 14px 32px var(--scrim-mid);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ribbon.large {
+    width: 180px;
+    padding: 24px 16px 48px;
+    gap: 28px;
+  }
+
+  .ribbon.small {
+    width: 110px;
+    padding: 16px 10px 30px;
+    gap: 18px;
+  }
+
+  .ribbon-diamond {
+    transform: rotate(45deg);
+    overflow: hidden;
+    border-radius: 12px;
+    border: 3px solid var(--gold);
+    flex-shrink: 0;
+    background: var(--cream);
+  }
+
+  .large .ribbon-diamond {
+    width: 104px;
+    height: 104px;
+  }
+
+  .small .ribbon-diamond {
+    width: 64px;
+    height: 64px;
+    border-width: 2px;
+    border-radius: 8px;
+  }
+
+  .ribbon-diamond-inner {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-45deg) scale(1.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ribbon-crest {
+    width: 86%;
+    height: 86%;
+    object-fit: contain;
+  }
+
+  .ribbon-text {
+    text-align: center;
+  }
+
+  .ribbon-big {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 25px;
+    color: var(--gold);
+    line-height: 1.2;
+  }
+
+  :global(html[dir='rtl']) .ribbon-big {
+    font-style: normal;
+  }
+
+  .ribbon-mid {
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+    margin-top: 4px;
+  }
+
+  .ribbon-small {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--cream);
+    margin-top: 2px;
+  }
+
+  .ribbon-rule {
+    width: 34px;
+    height: 1px;
+    background: var(--gold);
+    margin: 10px auto;
+  }
+
+  .ribbon-other {
+    font-family: var(--font-arabic);
+    font-size: 12.5px;
+    color: var(--gold);
+    line-height: 1.55;
+    white-space: pre-line;
+  }
+
+  .ribbon-other-sm {
+    font-family: var(--font-arabic);
+    font-size: 11px;
+    color: var(--gold);
+    line-height: 1.4;
+    white-space: pre-line;
+  }
+
+  .ribbon-small-sm {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 11.5px;
+    color: var(--cream);
+    margin-top: 6px;
+    line-height: 1.3;
+  }
+
+  @media (max-width: 1100px) {
+    .ribbon {
+      display: none;
+    }
+  }
+</style>

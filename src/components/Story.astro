@@ -1,0 +1,154 @@
+---
+import { Image } from 'astro:assets';
+import damascus from '../assets/owner-damascus.webp';
+import newcastle from '../assets/owner-newcastle.webp';
+import { useT } from '../i18n';
+
+const lang = Astro.currentLocale ?? 'en';
+const t = useT(lang);
+---
+
+<section id="story">
+  <div class="section-head">
+    <div class="kicker">{t.story.kicker}</div>
+    <h2 class="section-title">{t.story.title}</h2>
+  </div>
+
+  <div class="story-row">
+    <div class="story-photo-col">
+      <div class="story-photo">
+        <Image src={damascus} alt={t.story.damascusAlt} widths={[400, 680]} sizes="(max-width: 800px) 90vw, 340px" />
+      </div>
+    </div>
+    <div>
+      <div class="kicker sub">{t.story.damascusKicker}</div>
+      <h3>{t.story.damascusTitle}</h3>
+      <p>{t.story.damascusP1}</p>
+      <p>{t.story.damascusP2}</p>
+    </div>
+  </div>
+
+  <div class="story-row flip">
+    <div class="story-photo-col end">
+      <div class="story-photo">
+        <Image src={newcastle} alt={t.story.newcastleAlt} widths={[400, 680]} sizes="(max-width: 800px) 90vw, 340px" />
+      </div>
+    </div>
+    <div>
+      <div class="kicker sub">{t.story.newcastleKicker}</div>
+      <h3>{t.story.newcastleTitle}</h3>
+      <p>{t.story.newcastleP1}</p>
+      <p class="quote">{t.story.newcastleQuote}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    position: relative;
+    padding: 100px 6vw;
+    padding-inline-end: calc(6vw + 210px);
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .section-head {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-head .kicker {
+    margin-bottom: 10px;
+  }
+
+  .story-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .story-row + .story-row {
+    margin-top: 80px;
+  }
+
+  .story-row.flip .story-photo-col {
+    order: 2;
+  }
+
+  .story-photo {
+    width: 340px;
+    max-width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 14px;
+    overflow: hidden;
+    filter: contrast(1.08) saturate(1.12) brightness(1.03);
+  }
+
+  .story-photo-col.end .story-photo {
+    margin-inline-start: auto;
+  }
+
+  .story-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .kicker.sub {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 26px;
+    margin: 0 0 16px;
+    color: var(--ink);
+  }
+
+  p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0 0 16px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  .quote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--maroon);
+    margin: 24px 0 0;
+  }
+
+  :global(html[dir='rtl']) .quote {
+    font-style: normal;
+  }
+
+  @media (max-width: 1100px) {
+    section {
+      padding-inline-end: 6vw;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .story-row {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .story-row.flip .story-photo-col {
+      order: 0;
+    }
+
+    .story-row + .story-row {
+      margin-top: 56px;
+    }
+  }
+</style>

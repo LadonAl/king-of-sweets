@@ -1,0 +1,169 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { site } from '../data/site';
+import { useT } from '../i18n';
+
+const lang = Astro.currentLocale ?? 'en';
+const t = useT(lang);
+---
+
+<nav>
+  <a href="#top" class="brand">
+    <Image src={logo} alt="King of Sweets logo" width="88" height="88" class="brand-logo" />
+    <span class="brand-text">
+      <span class="brand-name">{site.name}</span>
+      <span class="brand-ar">{site.nameAr}</span>
+    </span>
+  </a>
+  <div class="navlinks">
+    <a href="#story">{t.nav.story}</a>
+    <a href="#menu">{t.nav.menu}</a>
+    <a href="#order">{t.nav.order}</a>
+    <a href="#reviews">{t.nav.reviews}</a>
+    <a href="#visit">{t.nav.visit}</a>
+  </div>
+  <div class="nav-end">
+    <div class="lang-switch" aria-label="Language">
+      <a href="/" class:list={['lang-opt', { active: lang !== 'ar' }]} aria-current={lang !== 'ar' ? 'page' : undefined}>EN</a>
+      <a href="/ar/" class:list={['lang-opt', 'lang-ar', { active: lang === 'ar' }]} aria-current={lang === 'ar' ? 'page' : undefined}>عربي</a>
+    </div>
+    <a href={site.mapUrl} target="_blank" rel="noopener" class="nav-cta">{t.nav.cta}</a>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 32px;
+    background: var(--bg-translucent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .brand-logo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+  }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .brand-ar {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 12px;
+    color: var(--gold);
+  }
+
+  .navlinks {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .navlinks a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .navlinks a:hover {
+    color: var(--maroon);
+  }
+
+  .nav-end {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    background: var(--panel);
+    border: 1px solid var(--hairline);
+    border-radius: 100px;
+    padding: 3px;
+    gap: 2px;
+  }
+
+  .lang-opt {
+    padding: 6px 13px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    line-height: 1;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .lang-ar {
+    font-family: 'Reem Kufi', sans-serif;
+    padding-top: 8px;
+    padding-bottom: 4px;
+  }
+
+  .lang-opt:hover {
+    color: var(--maroon);
+  }
+
+  .lang-opt.active {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  .nav-cta {
+    background: var(--maroon);
+    color: var(--cream);
+    padding: 10px 18px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .nav-cta:hover {
+    background: var(--maroon-dark);
+  }
+
+  @media (max-width: 960px) {
+    .navlinks {
+      display: none;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .nav-cta {
+      display: none;
+    }
+  }
+</style>

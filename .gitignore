@@ -13,13 +13,5 @@ node_modules/
 Thumbs.db
 .DS_Store
 
-# legacy design-component files (superseded by the Astro site)
-King of Sweets.dc.html
-support.js
-image-slot.js
-.image-slots.state.json
-.thumbnail
-uploads/
-
 # vercel
 .vercel/

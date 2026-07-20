@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import storefront from '../assets/storefront.webp';
+import { site } from '../data/site';
+import { useT } from '../i18n';
+
+const lang = Astro.currentLocale ?? 'en';
+const t = useT(lang);
+---
+
+<section id="visit">
+  <div>
+    <div class="kicker">{t.visit.kicker}</div>
+    <h2 class="section-title">{t.visit.title}</h2>
+    <div class="details">
+      <div>
+        <strong>{t.visit.addressLabel}</strong><br />
+        <span dir="ltr">{site.address}</span>
+      </div>
+      <div>
+        <strong>{t.visit.hoursLabel}</strong><br />
+        {t.visit.hours.map((h) => (
+          <span class="hours-line">
+            {h.days} · {h.time}
+            <br />
+          </span>
+        ))}
+      </div>
+      <div>
+        <strong>{t.visit.phoneLabel}</strong><br />
+        <a href={`tel:${site.phone}`} class="phone" dir="ltr">{site.phoneDisplay}</a>
+      </div>
+    </div>
+    <a href={site.mapUrl} target="_blank" rel="noopener" class="btn btn-maroon">{t.visit.directions}</a>
+  </div>
+  <div class="photo">
+    <Image
+      src={storefront}
+      alt={t.visit.storefrontAlt}
+      widths={[500, 900, 1320]}
+      sizes="(max-width: 900px) 90vw, 560px"
+    />
+  </div>
+</section>
+
+<style>
+  section {
+    position: relative;
+    padding: 100px 6vw;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    margin: 8px 0 22px;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 30px;
+  }
+
+  .details strong {
+    color: var(--ink);
+  }
+
+  .phone {
+    color: var(--maroon);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .phone:hover {
+    text-decoration: underline;
+  }
+
+  .photo {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (max-width: 900px) {
+    section {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

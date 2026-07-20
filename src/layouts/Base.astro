@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import { useT } from '../i18n';
+
+const lang = Astro.currentLocale ?? 'en';
+const dir = lang === 'ar' ? 'rtl' : 'ltr';
+const t = useT(lang);
+---
+
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.description} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="alternate" hreflang="en" href={new URL('/', Astro.site)} />
+    <link rel="alternate" hreflang="ar" href={new URL('/ar/', Astro.site)} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Reem+Kufi:wght@500;700&family=Tajawal:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

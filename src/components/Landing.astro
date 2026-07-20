@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import Ribbon from './Ribbon.astro';
+import Story from './Story.astro';
+import Menu from './Menu.astro';
+import CounterBand from './CounterBand.astro';
+import Order from './Order.astro';
+import Reviews from './Reviews.astro';
+import Visit from './Visit.astro';
+import Footer from './Footer.astro';
+---
+
+<Base>
+  <Nav />
+  <Hero />
+  <div class="spine">
+    <Ribbon size="large" />
+    <Story />
+    <Menu />
+    <CounterBand />
+    <Order />
+    <Reviews />
+    <Visit />
+  </div>
+  <Footer />
+</Base>
+
+<style>
+  .spine {
+    position: relative;
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { site } from '../data/site';
+import { useT } from '../i18n';
+
+const lang = Astro.currentLocale ?? 'en';
+const t = useT(lang);
+---
+
+<footer>
+  <div class="brand">
+    <Image src={logo} alt="King of Sweets logo" width="80" height="80" class="brand-logo" />
+    <div class="brand-text">
+      <span class="brand-name">{lang === 'ar' ? site.nameAr : site.name}</span>
+      <span class="brand-sub">{t.footer.sub}</span>
+    </div>
+  </div>
+  <div class="line">{t.footer.line}</div>
+</footer>
+
+<style>
+  footer {
+    padding: 44px 6vw;
+    background: var(--ink);
+    color: var(--cream-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: brightness(1.6);
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--cream);
+  }
+
+  .brand-sub {
+    font-family: var(--font-arabic);
+    font-size: 12px;
+    color: var(--gold);
+  }
+
+  .line {
+    font-size: 13px;
+    color: var(--cream-footer-muted);
+  }
+</style>
