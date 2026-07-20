@@ -2,8 +2,8 @@ export const site = {
   name: 'King of Sweets',
   nameAr: 'ملك الحلويات',
   address: '404 Westgate Rd, Newcastle upon Tyne NE4 5NH',
-  phone: '+447506856755',
-  phoneDisplay: '0750 685 6755',
+  phone: '+441916607143',
+  phoneDisplay: '0191 660 7143',
   mapUrl:
     'https://www.google.com/maps/search/?api=1&query=404+Westgate+Rd+Newcastle+upon+Tyne+NE4+5NH',
   uberUrl: 'https://www.ubereats.com',
